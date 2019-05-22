@@ -1,0 +1,7 @@
+<h1>ユーザー一覧</h1>
+<hr>
+<%@users.each do |u| %>
+<p><%= link_to u.family_name + u.first_name, "/users/#{u.id}" %>さん</p>
+<hr>
+<% end %> 
+<%= link_to "トップに戻る", "/posts", class:"btn btn-info" %>
