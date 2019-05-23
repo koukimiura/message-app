@@ -1,2 +1,15 @@
-<h1>Room#edit</h1>
-<p>Find me in app/views/room/edit.html.erb</p>
+<h2>チャット情報を編集する</h2>
+<hr>
+<%= form_for @room do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name, :class => "form-control myform", :placeholder =>  "名前を入力して下さい"%>
+<br>
+<%=f.label :explain %>
+<%= f.text_area :explain, :class => "form-control myform", :size => "30x10", :placeholder =>  "説明を入力して下さい"%>
+<br>
+<%= f.submit "編集", :class => "btn btn-success" %>
+<% end %>
+<hr>
+<%= link_to "チャットに戻る", "/rooms/#{@room.id }", :class => "btn btn-primary" %>
+<%= link_to "トップに戻る", room_path, class:"btn btn-info" %>
+

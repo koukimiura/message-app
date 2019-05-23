@@ -1,7 +1,14 @@
 <h1>ユーザー一覧</h1>
 <hr>
-<%@users.each do |u| %>
-<p><%= link_to u.family_name + u.first_name, "/users/#{u.id}" %>さん</p>
-<hr>
+ 
+    <% @users.each do |u| %>
+    <% if u.family_name == nil && u.first_name == nil %>
+    <p><%= u.id %>:<%= link_to "へのへのもへじさん", "/users/#{u.id}" %></p>
+    <hr>
+    <% else %> 
+    <p><%= link_to u.family_name + u.first_name, "/users/#{u.id}" %>さん</p>
+    <hr>
+     <% end %> 
+     
 <% end %> 
-<%= link_to "トップに戻る", "/posts", class:"btn btn-info" %>
+<%= link_to "トップに戻る", root_path, class:"btn btn-info" %>

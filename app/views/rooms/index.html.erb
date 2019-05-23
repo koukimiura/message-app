@@ -1,2 +1,8 @@
-<h1>Room#index</h1>
-<p>Find me in app/views/room/index.html.erb</p>
+<h1>チャット一覧</h1>
+<hr>
+<% @rooms.each do |r| %>
+  <%= link_to r.name, "/rooms/#{r.id}" %>
+  <hr>
+<% end %>
+<p><%= link_to current_user.family_name + current_user.first_name, "/users/#{current_user.id}", :class =>"btn btn-primary" %></p>
+<p><%= link_to "トップに戻る", root_path, :class="btn btn-info" %></p>

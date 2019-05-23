@@ -10,10 +10,24 @@
         <p><%= link_to "ユーザーを編集する", "/users/#{@user.id}/edit", class:"btn btn-success" %></p>
     <% else %>
         <%= form_for @room do |f| %>
+        <%= fields_for @entry do |e| %>
+        <%= e.hidden_field :user_id, :value => @user.id %>
+        <% end %>
         <%= f.submit "チャットを始める", :class => "btn btn-warning" %>
     <% end %>
   <% end %>
     </div>
+    <% if @user.id == current_user.id %>
+    <div class="col-xs-6">
+        <h1>チャット一覧</h1>
+        <hr>
+        <% @entries.each do |e| %>
+        <p><strong><%= link_to e.room.name, "/rooms/#{e.room.id}" %></strong></p>
+        <hr>
+        <% end %>
+        <%= link_to "チャット一覧", room_path, :class => "btn btn-info" %>
+    </div>
+    <% end %>
 </div>
 <hr>
 <p><%= link_to "トップに戻る", root_path, class:"btn btn-info" %></p>

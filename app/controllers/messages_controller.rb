@@ -5,9 +5,9 @@ class MessagesController < ApplicationController
     def create
         @message = Message.new(message_params)
         if @message.save
-            redirect_back
+            redirect_to :back
         else
-            render '/users/index'
+            render 'users/index'
     end
 end
     
@@ -17,7 +17,7 @@ end
     private
     
     def message_params
-        params.require(:message).permit(:user_id, :room_id, :content).merge(:user_id => current_user.id)
+        params.require(:message).permit(:user_id, :content, :room_id).merge(:user_id => current_user.id)
     
     end
 end

@@ -24,7 +24,11 @@
       <ul class="nav navbar-nav navbar-right">
          <% if user_signed_in? %>
             <li><%= link_to "ユーザー一覧", users_path %></li>
-             <li><%= link_to "ユーザー詳細", "/users/#{current_user.id}" %></li>
+            <% if current_user.family_name == nil && current_user.first_name == nil %>
+              <li><%= link_to "ユーザー詳細", "/users/#{current_user.id}" %></li>
+             <% else %>
+              <li><%= link_to current_user.family_name + current_user.first_name, "/users/#{current_user.id}" %></li>
+             <% end %>
            <li><%= link_to "ログアウト", destroy_user_session_path, :method => :delete %></li>
          <% else %>
            <li><%= link_to "登録する", "/users/sign_up" %></li>
